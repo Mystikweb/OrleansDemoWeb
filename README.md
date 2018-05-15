@@ -1,5 +1,7 @@
 # OrleansDemoWeb
 
+[![Build Status](https://travis-ci.com/Mystikweb/OrleansDemoWeb.svg?branch=master)](https://travis-ci.com/Mystikweb/OrleansDemoWeb)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
 
 ## Development server
