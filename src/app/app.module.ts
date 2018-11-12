@@ -15,6 +15,7 @@ import {
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ServiceModule } from './service/service.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -36,7 +37,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    ServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

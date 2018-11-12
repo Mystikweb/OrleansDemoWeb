@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+
+import { DashboardService } from '../service/dashboard.service';
+
+import { DeviceViewModel } from '../models';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  deviceList: DeviceViewModel[];
+
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -29,5 +35,15 @@ export class HomeComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+    private dashboardService: DashboardService) {}
+
+  ngOnInit() {
+    this.loadData();
+  }
+
+  private loadData() {
+    this.dashboardService.getDevices()
+      .subscribe(results => this.deviceList = results);
+  }
 }
