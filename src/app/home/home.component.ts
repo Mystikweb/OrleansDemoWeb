@@ -5,6 +5,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { DashboardService } from '../service/dashboard.service';
 
 import { DeviceViewModel } from '../models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { DeviceViewModel } from '../models';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  deviceList: DeviceViewModel[];
+  deviceList$: Observable<DeviceViewModel[]>;
 
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -36,14 +37,11 @@ export class HomeComponent implements OnInit {
   );
 
   constructor(private breakpointObserver: BreakpointObserver,
-    private dashboardService: DashboardService) {}
+    private dashboardService: DashboardService) {
+      this.deviceList$ = this.dashboardService.getDevices();
+    }
 
   ngOnInit() {
-    this.loadData();
-  }
-
-  private loadData() {
-    this.dashboardService.getDevices()
-      .subscribe(results => this.deviceList = results);
+    this.deviceList$.subscribe();
   }
 }

@@ -19,11 +19,13 @@ import { ServiceModule } from './service/service.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SensorDashboardComponent } from './sensor-dashboard/sensor-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SensorDashboardComponent
   ],
   imports: [
     BrowserModule,

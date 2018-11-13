@@ -16,7 +16,7 @@ export class DashboardService {
     private logger: LoggingService) { }
 
   getDevices(): Observable<DeviceViewModel[]> {
-    const getDashboardRequestUrl = `${environment.runtimeUri}/dashboard`;
+    const getDashboardRequestUrl = `${environment.runtimeUri}/api/dashboard`;
     return this.httpClient.get<DeviceViewModel[]>(getDashboardRequestUrl)
       .pipe(
         tap(results => this.logger.add(`Retrieved ${results.length} devices.`)),
